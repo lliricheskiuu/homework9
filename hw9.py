@@ -7,18 +7,21 @@ import string
 # Фамилия находится всегда на одной и той же позиции в строке.
 
 path = "names.txt"
-result = []
 
-with open(path, "r") as txt_file:
-    data = []
-    for line in txt_file.readlines():
-        data.append(line.strip())
 
-    for stroka in data:
-        stroka = stroka.split('\t')
-        result.append(stroka[1])
+def only_surnames(path):
+    result = []
+    with open(path, "r") as txt_file:
+        data = []
+        for line in txt_file.readlines():
+            data.append(line.strip())
+        for stroka in data:
+            stroka = stroka.split('\t')
+            result.append(stroka[1])
+    return result
 
-print(result)
+
+print(only_surnames(path))
 
 ###
 
@@ -30,12 +33,10 @@ print(result)
 # или True/False. Выбор значения должен быть равновероятным. Т.е. вероятность того, что значение будет целым
 # такая же, как и вероятность того, что будет типа float или типа bool.
 
-result = {}
-
 
 def generate_rnd_str():
     letters = string.ascii_lowercase
-    rand_str = ''.join(rnd.choice(letters) for i in range(6))
+    rand_str = ''.join(rnd.choice(letters) for i in range(5))
     return rand_str
 
 
@@ -50,11 +51,12 @@ def generate_rnd_value(chance):
     return rnd_value
 
 
-def generate_rnd_dict(tmp=rnd.randint(5, 20)):
-    for i in range(tmp):
+def generate_rnd_dict():
+    rnd_dict = {}
+    for i in range(rnd.randint(5, 20)):
         chance = rnd.randint(1, 12)
-        result[generate_rnd_str()] = generate_rnd_value(chance)
-    return result
+        rnd_dict[generate_rnd_str()] = generate_rnd_value(chance)
+    return rnd_dict
 
 
 # print(generate_rnd_dict())
