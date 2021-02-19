@@ -40,22 +40,34 @@ def generate_rnd_str():
     return rand_str
 
 
-def generate_rnd_value(chance):
-    rnd_value = 0
-    if chance <= 4:
+# def generate_rnd_value(chance):
+#     rnd_value = 0
+#     if chance <= 4:
+#         rnd_value = rnd.randint(-100, 100)
+#     elif 4 < chance <= 8:
+#         rnd_value = rnd.random()
+#     elif 8 < chance <= 12:
+#         rnd_value = bool(rnd.randint(0, 1))
+#     return rnd_value
+
+
+def generate_random_value():
+    my_list = [int, bool, float]
+    rnd_value = rnd.choice(my_list)
+    if rnd_value == int:
         rnd_value = rnd.randint(-100, 100)
-    elif 4 < chance <= 8:
-        rnd_value = rnd.random()
-    elif 8 < chance <= 12:
+    if rnd_value == bool:
         rnd_value = bool(rnd.randint(0, 1))
+    if rnd_value == float:
+        rnd_value = rnd.random()
     return rnd_value
 
 
 def generate_rnd_dict():
     rnd_dict = {}
     for i in range(rnd.randint(5, 20)):
-        chance = rnd.randint(1, 12)
-        rnd_dict[generate_rnd_str()] = generate_rnd_value(chance)
+        # chance = rnd.randint(1, 12)
+        rnd_dict[generate_rnd_str()] = generate_random_value()
     return rnd_dict
 
 
